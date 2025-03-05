@@ -10,6 +10,10 @@ const Home = () => {
 
   return (
     <View style={[styles.container, {backgroundColor: colors.background}]}>
+      <View style={styles.headlineContainer}>
+        <Text style={styles.headline}>{LABEL.EMPLOYEE_MANAGEMENT}</Text>
+      </View>
+
       <Text style={styles.clickDown}>{LABEL.CLICK_DOWN}</Text>
       <TouchableOpacity
         onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
@@ -40,10 +44,23 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 25,
     fontWeight: '900',
+    marginTop: 50,
   },
   clickDown: {
     color: Color.orange,
     fontWeight: 'bold',
     fontSize: 18,
+    marginBottom: 6,
+  },
+  headline: {
+    color: Color.black,
+    fontWeight: 'bold',
+    fontSize: 25,
+  },
+  headlineContainer: {
+    backgroundColor: Color.light_grey,
+    padding: 10,
+    borderRadius: 20,
+    marginBottom: 30,
   },
 });

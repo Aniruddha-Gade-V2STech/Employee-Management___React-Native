@@ -20,11 +20,12 @@ export const LABEL = {
   SELECTED_DATA_AND_TIMER_PLACEHOLDER: 'Choose date',
   SUBMIT: 'Submit',
   AUTOFILL: 'Auto Fill',
-  RESET:'Reset',
-  UPDATE:'Update',
-  DELETE:'Delete',
-  EDIT:'Edit',
-  CLICK_DOWN:'Click Down'
+  RESET: 'Reset',
+  UPDATE: 'Update',
+  DELETE: 'Delete',
+  EDIT: 'Edit',
+  CLICK_DOWN: 'Click Down',
+  EMPLOYEE_MANAGEMENT:'Employee Management'
 };
 
 export const REQUIRED_VALUES = {
@@ -42,7 +43,8 @@ export const Employee_Departments = [
   {label: 'Finance', value: 'finance'},
 ];
 
+export const No_IMAGE =
+  'https://www.shutterstock.com/image-vector/no-image-available-vector-hand-260nw-745639717.jpg';
 
-export const No_IMAGE = 'https://www.shutterstock.com/image-vector/no-image-available-vector-hand-260nw-745639717.jpg'
-
-export const DUMMY_IMAGE = 'https://media.istockphoto.com/id/1399565382/photo/young-happy-mixed-race-businessman-standing-with-his-arms-crossed-working-alone-in-an-office.jpg?s=612x612&w=0&k=20&c=buXwOYjA_tjt2O3-kcSKqkTp2lxKWJJ_Ttx2PhYe3VM='
+export const DUMMY_IMAGE =
+  'https://media.istockphoto.com/id/1399565382/photo/young-happy-mixed-race-businessman-standing-with-his-arms-crossed-working-alone-in-an-office.jpg?s=612x612&w=0&k=20&c=buXwOYjA_tjt2O3-kcSKqkTp2lxKWJJ_Ttx2PhYe3VM=';
