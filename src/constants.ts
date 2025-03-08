@@ -24,8 +24,10 @@ export const LABEL = {
   UPDATE: 'Update',
   DELETE: 'Delete',
   EDIT: 'Edit',
-  CLICK_DOWN: 'Click Down',
-  EMPLOYEE_MANAGEMENT:'Employee Management'
+  EMPLOYEE_MANAGEMENT:'Welcome..!',
+  NO_DATA_PRESENT: 'No data present',
+  NO_EMPLOYEE_DATA:'There is No Employee Data',
+  LOADING: 'Loading...'
 };
 
 export const REQUIRED_VALUES = {
@@ -48,3 +50,6 @@ export const No_IMAGE =
 
 export const DUMMY_IMAGE =
   'https://media.istockphoto.com/id/1399565382/photo/young-happy-mixed-race-businessman-standing-with-his-arms-crossed-working-alone-in-an-office.jpg?s=612x612&w=0&k=20&c=buXwOYjA_tjt2O3-kcSKqkTp2lxKWJJ_Ttx2PhYe3VM=';
+
+
+export const FILTER_STORAGE_KEY = 'employee_filters';
