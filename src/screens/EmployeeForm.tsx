@@ -13,6 +13,7 @@ import DropdownComponent from '../components/DropdownComponent';
 import {Employee_Departments, LABEL, REQUIRED_VALUES} from '../constants';
 import TextField from '../components/TextField';
 import Color from '../utils/Color';
+import {useSelector} from 'react-redux';
 
 const EmployeeForm = () => {
   const {
@@ -27,6 +28,9 @@ const EmployeeForm = () => {
     isModified,
     autoFillForm,
   } = useEmployeeForm();
+  
+  const isDarkMode = useSelector(state => state?.theme?.isDarkMode);
+  const inputTextColor = {color: isDarkMode ? Color.white : Color.black};
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -41,11 +45,10 @@ const EmployeeForm = () => {
         rules={{required: REQUIRED_VALUES.FULL_NAME}}
         render={({field: {onChange, value}}) => (
           <TextField
-            style={styles.input}
+            style={[styles.input, inputTextColor]}
             placeholder="Full Name"
             value={value}
             onChangeText={onChange}
-            placeholderTextColor="grey"
           />
         )}
       />
@@ -63,12 +66,11 @@ const EmployeeForm = () => {
         }}
         render={({field: {onChange, value}}) => (
           <TextField
-            style={styles.input}
+            style={[styles.input, inputTextColor]}
             placeholder="Email"
             keyboardType="email-address"
             value={value}
             onChangeText={onChange}
-            placeholderTextColor="grey"
           />
         )}
       />
@@ -84,13 +86,12 @@ const EmployeeForm = () => {
         }}
         render={({field: {onChange, value}}) => (
           <TextField
-            style={styles.input}
+            style={[styles.input, inputTextColor]}
             placeholder="Mobile Number"
             keyboardType="numeric"
             maxLength={10}
             value={value}
             onChangeText={onChange}
-            placeholderTextColor="grey"
           />
         )}
       />
@@ -105,11 +106,10 @@ const EmployeeForm = () => {
         rules={{required: REQUIRED_VALUES.ADRESS}}
         render={({field: {onChange, value}}) => (
           <TextField
-            style={styles.input}
+            style={[styles.input, inputTextColor]}
             placeholder="Address"
             value={value}
             onChangeText={onChange}
-            placeholderTextColor="grey"
           />
         )}
       />
@@ -143,11 +143,10 @@ const EmployeeForm = () => {
         rules={{required: 'Please enter a position'}}
         render={({field: {onChange, value}}) => (
           <TextField
-            style={styles.input}
+            style={[styles.input, inputTextColor]}
             placeholder="Position"
             value={value}
             onChangeText={onChange}
-            placeholderTextColor="grey"
           />
         )}
       />
@@ -161,12 +160,11 @@ const EmployeeForm = () => {
         name="salary"
         render={({field: {onChange, value}}) => (
           <TextField
-            style={styles.input}
+            style={[styles.input, inputTextColor]}
             placeholder="Salary"
             keyboardType="numeric"
             value={value}
             onChangeText={onChange}
-            placeholderTextColor="grey"
           />
         )}
       />
@@ -177,11 +175,10 @@ const EmployeeForm = () => {
         name="joiningDate"
         render={({field: {onChange, value}}) => (
           <TextField
-            style={styles.input}
+            style={[styles.input, inputTextColor]}
             placeholder="Joining Date"
             value={value}
             onChangeText={onChange}
-            placeholderTextColor="grey"
           />
         )}
       />
@@ -222,13 +219,12 @@ const EmployeeForm = () => {
         name="emergencyContact"
         render={({field: {onChange, value}}) => (
           <TextField
-            style={styles.input}
+            style={[styles.input, inputTextColor]}
             placeholder="Emergency Contact"
             keyboardType="numeric"
             maxLength={10}
             value={value}
             onChangeText={onChange}
-            placeholderTextColor="grey"
           />
         )}
       />
@@ -276,13 +272,11 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 15,
-    color: 'white',
+    color: Color.white,
   },
   input: {
-    borderBottomWidth: 1,
-    marginBottom: 10,
     padding: 10,
-    color: 'white',
+    width: '100%',
   },
   error: {
     color: 'red',
