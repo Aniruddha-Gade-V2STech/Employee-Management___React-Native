@@ -3,8 +3,8 @@ import {EMPLOYEE_DATA} from '../constants/EmployeeData';
 import {EmployeeFormData} from '../types/types';
 
 const initialState = {
-  // employees: [],
-  employees: EMPLOYEE_DATA,
+  employees: [],
+  // employees: EMPLOYEE_DATA,
 };
 
 const EmployeeSlice = createSlice({
@@ -18,12 +18,12 @@ const EmployeeSlice = createSlice({
       state.employees = [...state.employees, action.payload];
     },
     deleteEmployee: (state, action: PayloadAction<string>) => {
-      state.employees = state.employees.filter(
+      state.employees = state?.employees?.filter(
         emp => emp.id !== action.payload,
       );
     },
     updateEmployee: (state, action: PayloadAction<Employee>) => {
-      const index = state.employees.findIndex(
+      const index = statez.employees?.findIndex(
         emp => emp?.id === action.payload?.id,
       );
       if (index !== -1) {
