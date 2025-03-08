@@ -11,6 +11,7 @@ import store from './src/redux/store';
 import DrawerStack from './src/navigation/drawer/Drawer';
 import {navigationRef} from './src/navigation/NavigationService';
 import Color from './src/utils/Color';
+import Header from './src/components/Header';
 
 // Define Custom Themes
 const CustomLightTheme = {
@@ -47,6 +48,7 @@ const MainApp = () => {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={isDarkMode ? '#000000' : '#FFFFFF'}
       />
+      <Header />
       <DrawerStack />
     </NavigationContainer>
   );
