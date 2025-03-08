@@ -40,7 +40,6 @@ const STYLES = StyleSheet.create({
   },
   screenMainView: {
     flex: 1,
-    backgroundColor: Color.black,
     paddingHorizontal: '3%',
     paddingVertical: '2%',
   },

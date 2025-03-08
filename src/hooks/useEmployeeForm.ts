@@ -91,6 +91,7 @@ export const useEmployeeForm = () => {
       salary: '70000',
       joiningDate: '2023-06-15',
       emergencyContact: '9876543211',
+      // profileImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6SBFO_34s3mUw1zz2SuAVXn83OArtd8D9GQ&s',
       profileImage: null,
     });
   };

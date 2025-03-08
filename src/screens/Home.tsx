@@ -14,7 +14,6 @@ const Home = () => {
         <Text style={styles.headline}>{LABEL.EMPLOYEE_MANAGEMENT}</Text>
       </View>
 
-      <Text style={styles.clickDown}>{LABEL.CLICK_DOWN}</Text>
       <TouchableOpacity
         onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
         style={styles.menuButton}>

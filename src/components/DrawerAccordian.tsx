@@ -30,7 +30,7 @@ function TitleToggle({ title, onPress }: Readonly<TitleToggleProps>) {
 
 function DrawerAccordian({ data }: Readonly<DrawerAccordianProps>) {
   const { menuName, subMenu, onMenu } = data;
-  const { colors } = useTheme(); // Get theme colors
+  const { colors } = useTheme(); 
   const [isOpen, setIsSetOpen] = useState<boolean>(false);
 
   const onPressTitle = () => {

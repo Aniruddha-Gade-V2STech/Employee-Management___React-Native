@@ -31,12 +31,11 @@ interface TextInputComponentProps {
   mandatory?: boolean;
   editable?: boolean;
   inputStyle?: TextStyle;
-  isPassword?: boolean;
 }
 
 function TextField(props: TextInputProps & TextInputComponentProps) {
-  const {colors} = useTheme(); // Get theme-based colors
-  const isDarkMode = useSelector(state => state?.theme?.isDarkMode);
+  const {colors} = useTheme();
+  const {isDarkMode} = useSelector(state => state?.theme);
 
   const {
     placeholder,
@@ -52,12 +51,10 @@ function TextField(props: TextInputProps & TextInputComponentProps) {
     inputStyle = {},
     mandatory,
     editable = true,
-    isPassword = false,
     ...rest
   } = props;
 
-  const inputWidth = isPassword || RightIcon ? '90%' : '100%';
-  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const inputWidth = RightIcon ? '90%' : '100%';
 
   return (
     <View style={[customTextInputStyles.mainContainer, inputWrapper]}>
@@ -80,43 +77,20 @@ function TextField(props: TextInputProps & TextInputComponentProps) {
           style={[
             {
               width: inputWidth,
+              color: isDarkMode ? Color.white : Color.black,
             },
-
             customTextInputStyles.input,
             inputStyle,
           ]}
           onChangeText={onChangeText}
           value={value}
           placeholder={placeholder}
-          placeholderTextColor={Color.light_grey_1}
-          secureTextEntry={isPassword && !showPassword}
+          placeholderTextColor={isDarkMode ? Color.white : Color.black}
+          // secureTextEntry={!showPassword}
           {...rest}
           editable={editable}
         />
         {RightIcon && <RightIcon />}
-
-        {isPassword && (
-          <TouchableOpacity
-            onPress={() => setShowPassword(prev => !prev)}
-            // hitSlop={{ right: 13, left: 13, top: 20, bottom: 20 }}
-          >
-            {showPassword ? (
-              <CustomIcon
-                name="eye-outline"
-                icon="Ionicons"
-                size={24}
-                color={Color.grey}
-              />
-            ) : (
-              <CustomIcon
-                name="eye-off-outline"
-                icon="Ionicons"
-                size={24}
-                color={Color.grey}
-              />
-            )}
-          </TouchableOpacity>
-        )}
       </View>
 
       {error && <Text style={customTextInputStyles.error}>{errorMessage}</Text>}
@@ -129,13 +103,13 @@ export default TextField;
 export const customTextInputStyles = StyleSheet.create({
   mainContainer: {},
   input: {
-    color: Color.black,
     fontSize: 16,
+    // width: '100%',
+    // backgroundColor:'yellow'
   },
   inputRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderColor: Color.red,
     borderWidth: 1,
     borderRadius: 4,
     marginVertical: '1%',
