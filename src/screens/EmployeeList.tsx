@@ -1,18 +1,61 @@
-import {FlatList, RefreshControl, StyleSheet, Text, View} from 'react-native';
+import {
+  FlatList,
+  RefreshControl,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import {useSelector} from 'react-redux';
 import STYLES from '../common/StyleCSS';
-
 import {useTheme} from '@react-navigation/native';
 import EmployeeCard from '../components/EmployeeCard';
-import {isArrayLength} from '../utils/validation';
 import {ScrollView} from 'react-native-gesture-handler';
 import useEmployee from '../hooks/useEmployee';
+import DropdownComponent from '../components/DropdownComponent';
+import TextField from '../components/TextField';
+import Color from '../utils/Color';
+import NoDataComponent from '../components/NoDataComponent';
+import {LABEL} from '../constants';
+
+const EmployeeSkeleton = ({isDarkMode}: Readonly<{isDarkMode: boolean}>) => {
+  const {colors} = useTheme();
+  return (
+    <View
+      style={[
+        styles.loadingContainer,
+        {
+          backgroundColor: colors.card,
+          borderColor: colors.border,
+          borderWidth: 2,
+        },
+      ]}>
+      <Text
+        style={[
+          {color: isDarkMode ? Color.white : Color.black},
+          styles.loadingText,
+        ]}>
+        {LABEL.LOADING}
+      </Text>
+    </View>
+  );
+};
 
 const EmployeeList = () => {
   const {colors} = useTheme();
-  const {fetchEmployeeList, loading} = useEmployee();
-  const {employees} = useSelector(state => state?.employee);
+  const {
+    fetchEmployeeList,
+    loading,
+    departments,
+    handleFilterChange,
+    filterState,
+    filteredEmployees,
+    clearFilter,
+  } = useEmployee();
+
+  const isDarkMode = useSelector(state => state?.theme?.isDarkMode);
+  const inputTextColor = {color: isDarkMode ? Color.white : Color.black};
 
   return (
     <ScrollView
@@ -25,7 +68,38 @@ const EmployeeList = () => {
         <Text style={STYLES.headline}>EmployeeList</Text>
       </View>
 
-      {isArrayLength(employees) ? (
+      {/* Filter */}
+      <View>
+        {/* clear filter */}
+        <TouchableOpacity onPress={clearFilter}>
+          <Text style={{color: isDarkMode ? Color.white : Color.black}}>
+            Clear
+          </Text>
+        </TouchableOpacity>
+
+        {/* Search */}
+        <TextField
+          style={[styles.input, inputTextColor]}
+          placeholder="Search by Name"
+          value={filterState.searchText}
+          onChangeText={text => handleFilterChange('searchText', text)}
+          placeholderTextColor="grey"
+        />
+
+        <DropdownComponent
+          data={departments}
+          value={filterState?.selectedDepartment}
+          onChange={item =>
+            handleFilterChange('selectedDepartment', item.value)
+          }
+          label="Select Department"
+          placeholder="Select Department"
+        />
+      </View>
+
+      {loading && <EmployeeSkeleton isDarkMode={isDarkMode} />}
+
+      {!loading && (
         <FlatList
           refreshControl={
             <RefreshControl
@@ -33,15 +107,17 @@ const EmployeeList = () => {
               onRefresh={() => fetchEmployeeList(true)}
             />
           }
-          data={employees}
+          // data={employees ?? []}
+          data={filteredEmployees ?? []}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({item}) => <EmployeeCard employee={item} />}
           contentContainerStyle={styles.listContainer}
+          ListEmptyComponent={
+            <View style={{height: 400}}>
+              <NoDataComponent text={LABEL.NO_EMPLOYEE_DATA} />
+            </View>
+          }
         />
-      ) : (
-        <Text style={[styles.noDataText, {color: colors.text}]}>
-          No Employees Found
-        </Text>
       )}
     </ScrollView>
   );
@@ -67,5 +143,19 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 20,
     fontWeight: 'bold',
+  },
+  input: {
+    padding: 10,
+    width: '100%',
+  },
+  loadingText: {
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+  loadingContainer: {
+    height: '55%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 25,
   },
 });

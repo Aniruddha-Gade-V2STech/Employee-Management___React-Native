@@ -1,12 +1,21 @@
-import { useEffect, useState} from 'react';
-import { setEmployeeData} from '../redux/EmployeeSlice';
+import {useEffect, useState} from 'react';
+import {setEmployeeData} from '../redux/EmployeeSlice';
 import {EMPLOYEE_DATA} from '../constants/EmployeeData';
 import {useDispatch, useSelector} from 'react-redux';
+import {FILTER_STORAGE_KEY} from '../constants';
+import {getAsync, removeAsync, setAsync} from '../utils/async/AsyncUtils';
+import {notNullUndefined} from '../utils/validation';
 
 function useEmployee() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(false);
   const {employees} = useSelector(state => state?.employee);
+  const [filterState, setFilterState] = useState({
+    searchText: '',
+    selectedDepartment: '',
+  });
+
+  const [filteredEmployees, setFilteredEmployees] = useState(employees);
 
   //   const [data, setData] = useState<EmployeeFormData|null>(null);
 
@@ -17,7 +26,6 @@ function useEmployee() {
   // );
 
   useEffect(() => {
-    console.log('re rrun ')
     fetchEmployeeList();
   }, []);
 
@@ -40,14 +48,12 @@ function useEmployee() {
   //   }
   // };
 
-
   const fetchEmployeeList = async (forceRefresh = false) => {
     setLoading(true);
     try {
       if (forceRefresh || employees?.length === 0) {
-        setTimeout(() => {
-          dispatch(setEmployeeData([...EMPLOYEE_DATA])); 
-        }, 1500); 
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        dispatch(setEmployeeData([...EMPLOYEE_DATA]));
       }
     } catch (error) {
       console.log('error = ', error);
@@ -56,10 +62,83 @@ function useEmployee() {
     }
   };
 
+  const departments = [
+    {label: 'All', value: ''},
+    {label: 'Engineering', value: 'Engineering'},
+    {label: 'Finance', value: 'Finance'},
+    {label: 'Marketing', value: 'Marketing'},
+  ];
+
+  useEffect(() => {
+    loadFilters();
+  }, []);
+
+  useEffect(() => {
+    applyFilters();
+  }, [filterState, employees]);
+
+  const saveFilters = async (data: any) => {
+    try {
+      await setAsync(FILTER_STORAGE_KEY, data);
+    } catch (error) {
+      console.error('Error while saving filters:', error);
+    }
+  };
+
+  const loadFilters = async () => {
+    try {
+      const savedFilters = await getAsync(FILTER_STORAGE_KEY);
+      if (notNullUndefined(savedFilters)) {
+        setFilterState(savedFilters);
+      }
+    } catch (error) {
+      console.error('Error loading filters:', error);
+    }
+  };
+
+  const handleFilterChange = (key, value) => {
+    setFilterState(prevState => {
+      const newState = {...prevState, [key]: value};
+      saveFilters(newState);
+      return newState;
+    });
+  };
+
+  const applyFilters = () => {
+    let filtered = employees;
+
+    if (filterState?.searchText) {
+      filtered = filtered?.filter(emp =>
+        emp?.fullName
+          ?.toLowerCase()
+          ?.includes(filterState?.searchText?.toLowerCase()),
+      );
+    }
+
+    if (filterState?.selectedDepartment) {
+      filtered = filtered?.filter(
+        emp => emp?.department?.value === filterState?.selectedDepartment,
+      );
+    }
+
+    setFilteredEmployees(filtered);
+  };
+
+  const clearFilter = async () => {
+    setFilterState({searchText: '', selectedDepartment: ''});
+    await removeAsync(FILTER_STORAGE_KEY);
+  };
+
   return {
     loading,
     setLoading,
     fetchEmployeeList,
+    departments,
+    handleFilterChange,
+    filterState,
+    filteredEmployees,
+    setFilterState,
+    clearFilter,
   };
 }
 
