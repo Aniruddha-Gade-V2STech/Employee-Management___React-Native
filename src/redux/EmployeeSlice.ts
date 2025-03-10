@@ -1,5 +1,4 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {EMPLOYEE_DATA} from '../constants/EmployeeData';
 import {EmployeeFormData} from '../types/types';
 
 const initialState = {
@@ -23,7 +22,7 @@ const EmployeeSlice = createSlice({
       );
     },
     updateEmployee: (state, action: PayloadAction<Employee>) => {
-      const index = statez.employees?.findIndex(
+      const index = state.employees?.findIndex(
         emp => emp?.id === action.payload?.id,
       );
       if (index !== -1) {

@@ -16,7 +16,6 @@ export const useEmployeeForm = () => {
   const route = useRoute<RouteProp<{params: EmployeeFormRouteParams}, 'params'>>();
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  // const {employees} = useSelector(state => state?.employee);
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const employee = route.params?.employee ?? ({} as EmployeeFormData);
@@ -67,7 +66,6 @@ export const useEmployeeForm = () => {
   const watchFields = watch();
 
   useEffect(() => {
-    // Check if any field has a value (excluding profileImage if it's null)
     const hasValues = Object.values(watchFields).some(value => value);
     setIsModified(hasValues);
   }, [watchFields]);
@@ -104,7 +102,6 @@ export const useEmployeeForm = () => {
     };
 
     if (isEdit) {
-      console.log('isEdit = ', isEdit)
       dispatch(updateEmployee(newEmployee));
       Alert.alert('Success', 'Employee updated successfully!');
     } else {
