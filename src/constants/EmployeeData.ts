@@ -15,7 +15,7 @@ export const EMPLOYEE_DATA = [
   {
     id: '2',
     fullName: 'Shatru Gaikwad',
-    email: 'michaelsmith@example.com',
+    email: 'shatrugaikwad@example.com',
     mobileNumber: '+1555666777',
     address: '789 Oak Street, Chicago, IL 60601',
     department: { value: 'Finance' },
@@ -29,7 +29,7 @@ export const EMPLOYEE_DATA = [
   {
     id: '3',
     fullName: 'Amol Patil',
-    email: 'alicejohnson@example.com',
+    email: 'amolpatil23@example.com',
     mobileNumber: '+1122334455',
     address: '456 Elm Street, Los Angeles, CA 90001',
     department: { value: 'Marketing' },
@@ -42,7 +42,7 @@ export const EMPLOYEE_DATA = [
   {
     id: '4',
     fullName: 'Sangram Deshmukh',
-    email: 'michaelsmith@example.com',
+    email: 'sangramdeshmukh34@example.com',
     mobileNumber: '+1555666777',
     address: '789 Oak Street, Chicago, IL 60601',
     department: { value: 'Finance' },
@@ -56,7 +56,7 @@ export const EMPLOYEE_DATA = [
   {
     id: '5',
     fullName: 'Yash Nimbalkar',
-    email: 'michaelsmith@example.com',
+    email: 'yash88@example.com',
     mobileNumber: '+1555666777',
     address: '789 Oak Street, Chicago, IL 60601',
     department: { value: 'Finance' },

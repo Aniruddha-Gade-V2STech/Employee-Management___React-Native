@@ -13,6 +13,7 @@ function useEmployee() {
   const [filterState, setFilterState] = useState({
     searchText: '',
     selectedDepartment: '',
+    email: ''
   });
 
   const [filteredEmployees, setFilteredEmployees] = useState(employees);
@@ -121,11 +122,19 @@ function useEmployee() {
       );
     }
 
+    if (filterState?.email) {
+      filtered = filtered?.filter(emp =>
+        emp?.email
+          ?.toLowerCase()
+          ?.includes(filterState?.email?.toLowerCase()),
+      );
+    }
+
     setFilteredEmployees(filtered);
   };
 
   const clearFilter = async () => {
-    setFilterState({searchText: '', selectedDepartment: ''});
+    setFilterState({searchText: '', selectedDepartment: '', email: ''});
     await removeAsync(FILTER_STORAGE_KEY);
   };
 

@@ -86,6 +86,14 @@ const EmployeeList = () => {
           placeholderTextColor="grey"
         />
 
+        <TextField
+          style={[styles.input, inputTextColor]}
+          placeholder="Search by Email"
+          value={filterState.email}
+          onChangeText={text => handleFilterChange('email', text)}
+          placeholderTextColor="grey"
+        />
+
         <DropdownComponent
           data={departments}
           value={filterState?.selectedDepartment}
