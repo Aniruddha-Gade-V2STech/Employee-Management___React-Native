@@ -71,8 +71,8 @@ const EmployeeList = () => {
       {/* Filter */}
       <View>
         {/* clear filter */}
-        <TouchableOpacity onPress={clearFilter}>
-          <Text style={{color: isDarkMode ? Color.white : Color.black}}>
+        <TouchableOpacity onPress={clearFilter} style={styles.clearBtn}>
+          <Text style={[{color: isDarkMode ? Color.white : Color.black}, styles.clear]}>
             Clear
           </Text>
         </TouchableOpacity>
@@ -158,4 +158,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 25,
   },
+  clearBtn: {
+    backgroundColor: Color.green,
+    alignSelf:'flex-start',
+    padding: 5,
+    borderRadius: 20,
+    width: '20%',
+    alignItems:'center',
+    marginBottom: 5,
+  },
+  clear: {
+    fontWeight: '500'
+  }
 });

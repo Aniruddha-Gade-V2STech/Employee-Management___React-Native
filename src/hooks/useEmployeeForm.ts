@@ -104,6 +104,7 @@ export const useEmployeeForm = () => {
     };
 
     if (isEdit) {
+      console.log('isEdit = ', isEdit)
       dispatch(updateEmployee(newEmployee));
       Alert.alert('Success', 'Employee updated successfully!');
     } else {
