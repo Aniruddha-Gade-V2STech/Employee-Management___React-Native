@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {FILTER_STORAGE_KEY} from '../constants';
 import {getAsync, removeAsync, setAsync} from '../utils/async/AsyncUtils';
 import {notNullUndefined} from '../utils/validation';
+import { EmployeeFormData } from '../types/types';
 
 function useEmployee() {
   const dispatch = useDispatch();
@@ -97,7 +98,7 @@ function useEmployee() {
     }
   };
 
-  const handleFilterChange = (key, value) => {
+  const handleFilterChange = (key:string, value:string) => {
     setFilterState(prevState => {
       const newState = {...prevState, [key]: value};
       saveFilters(newState);
@@ -109,7 +110,7 @@ function useEmployee() {
     let filtered = employees;
 
     if (filterState?.searchText) {
-      filtered = filtered?.filter(emp =>
+      filtered = filtered?.filter((emp:EmployeeFormData )=>
         emp?.fullName
           ?.toLowerCase()
           ?.includes(filterState?.searchText?.toLowerCase()),
@@ -123,7 +124,7 @@ function useEmployee() {
     }
 
     if (filterState?.email) {
-      filtered = filtered?.filter(emp =>
+      filtered = filtered?.filter((emp: EmployeeFormData) =>
         emp?.email
           ?.toLowerCase()
           ?.includes(filterState?.email?.toLowerCase()),
