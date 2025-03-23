@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1042318389600",
+    "project_id": "employment-management-1bbde",
+    "storage_bucket": "employment-management-1bbde.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1042318389600:android:6d8750bb7e3d4db690ee05",
+        "android_client_info": {
+          "package_name": "com.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAz8w9l8kHzb1N6ksyr_dSLXX_1bP0gUyE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,5 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {EmployeeFormData} from '../types/types';
+import { createNotification } from '../notification/NotificationService';
+import { addEmployeeNotification, deleteEmployeeNotification, updateEmployeeNotification } from '../notification/onPressNotification';
 
 const initialState = {
   employees: [],
@@ -15,11 +17,14 @@ const EmployeeSlice = createSlice({
     },
     addEmployee: (state, action: PayloadAction<Employee>) => {
       state.employees = [...state.employees, action.payload];
+      createNotification(addEmployeeNotification(action.payload))
+      // createNotification({title:"Congrats", message:"New Employee added successfully", soundName: 'created.wav', playSound: true,})
     },
     deleteEmployee: (state, action: PayloadAction<string>) => {
       state.employees = state?.employees?.filter(
         emp => emp.id !== action.payload,
       );
+      createNotification(deleteEmployeeNotification())
     },
     updateEmployee: (state, action: PayloadAction<Employee>) => {
       const index = state.employees?.findIndex(
@@ -27,6 +32,7 @@ const EmployeeSlice = createSlice({
       );
       if (index !== -1) {
         state.employees[index] = {...action.payload};
+        createNotification(updateEmployeeNotification(action.payload))
       }
     },
   },
