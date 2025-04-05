@@ -4,6 +4,7 @@ export const CONSTANT = {
 
 export const PATH = {
   HOME: 'home',
+  TRAVEL: 'Travel',
 };
 
 export const TAB_ROUTE_NAME = {
@@ -11,6 +12,7 @@ export const TAB_ROUTE_NAME = {
   EMPLOYEE_TAB: 'employee_tab',
   EMPLOYEE_FORM: 'employee_form',
   EMPLOYEE_DETAILS: 'employee_details',
+  MY_MAP: 'my_map',
 };
 
 export const LABEL = {
@@ -24,10 +26,13 @@ export const LABEL = {
   UPDATE: 'Update',
   DELETE: 'Delete',
   EDIT: 'Edit',
-  EMPLOYEE_MANAGEMENT:'Welcome..!',
+  EMPLOYEE_MANAGEMENT: 'Welcome..!',
   NO_DATA_PRESENT: 'No data present',
-  NO_EMPLOYEE_DATA:'There is No Employee Data',
-  LOADING: 'Loading...'
+  NO_EMPLOYEE_DATA: 'There is No Employee Data',
+  LOADING: 'Loading...',
+  REQUIRED_LOCATION_PERMISSION:
+    'Location perission is required to show your current location on map',
+  DENIED_PERMISSION: 'Permission is denied',
 };
 
 export const REQUIRED_VALUES = {
@@ -50,6 +55,5 @@ export const No_IMAGE =
 
 export const DUMMY_IMAGE =
   'https://media.istockphoto.com/id/1399565382/photo/young-happy-mixed-race-businessman-standing-with-his-arms-crossed-working-alone-in-an-office.jpg?s=612x612&w=0&k=20&c=buXwOYjA_tjt2O3-kcSKqkTp2lxKWJJ_Ttx2PhYe3VM=';
-
 
 export const FILTER_STORAGE_KEY = 'employee_filters';

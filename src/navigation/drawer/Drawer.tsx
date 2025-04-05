@@ -1,9 +1,10 @@
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import React from 'react';
-import {PATH, } from '../../constants';
+import {PATH} from '../../constants';
 import HomeStack from '../HomeStack';
 import DrawerContent from './DrawerContent';
+import TravelStack from './TravelStack';
 
 const Drawer = createDrawerNavigator();
 
@@ -15,9 +16,9 @@ const DrawerStack = () => {
       screenOptions={{
         headerShown: false,
         swipeEnabled: false,
-      }}
-    >
+      }}>
       <Drawer.Screen name={PATH.HOME} component={HomeStack} />
+      <Drawer.Screen name={PATH.TRAVEL} component={TravelStack} />
     </Drawer.Navigator>
   );
 };
