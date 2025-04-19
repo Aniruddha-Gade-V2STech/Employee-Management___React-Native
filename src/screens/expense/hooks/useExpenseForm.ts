@@ -18,8 +18,6 @@ export const useExpenseForm = () => {
   const {employeeId, expenseData} = route.params ?? {};
   const isEdit = !!expenseData;
 
-  // console.log('expenseData >>>>>>>>>>  ',expenseData);
-
   const {
     control,
     handleSubmit,
@@ -56,6 +54,7 @@ export const useExpenseForm = () => {
     const newExpense: EmployeeExpenseType = {
       ...data,
       id: isEdit ? expenseData?.id : Date.now().toString(),
+      amount: Number(data.amount),
     };
 
     if (isEdit) {
