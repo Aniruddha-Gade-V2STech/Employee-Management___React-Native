@@ -75,11 +75,12 @@ if (!firebase.apps.length) {
 
 const MainApp = () => {
   const isDarkMode = useSelector(state => state?.theme?.isDarkMode);
-
+  const currentTheme = isDarkMode ? CustomDarkTheme : CustomLightTheme;
+  
   return (
     <NavigationContainer
       ref={navigationRef}
-      theme={isDarkMode ? CustomDarkTheme : CustomLightTheme}>
+      theme={currentTheme}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={isDarkMode ? '#000000' : '#FFFFFF'}

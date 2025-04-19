@@ -13,6 +13,8 @@ export const TAB_ROUTE_NAME = {
   EMPLOYEE_FORM: 'employee_form',
   EMPLOYEE_DETAILS: 'employee_details',
   MY_MAP: 'my_map',
+  EMPLOYEE_EXPENSE:'employee_expense',
+  ADD_EXPENSE_FORM: 'add_expense_form',
 };
 
 export const LABEL = {

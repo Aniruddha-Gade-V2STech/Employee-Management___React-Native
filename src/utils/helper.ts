@@ -1,6 +1,6 @@
 import Geolocation from '@react-native-community/geolocation';
 import {getDistance} from 'geolib';
-import {Platform} from 'react-native';
+import {Dimensions, Platform} from 'react-native';
 
 export const convertDateAndTime = (dateTime: string, mode: string) => {
   const parts = dateTime?.split(' ');
@@ -65,3 +65,7 @@ export const getSourceToDestiDistance = (source, destination) => {
 //     return position;
 //   });
 // };
+
+
+export const WIDTH = Dimensions.get('window').width;
+export const HEIGHT = Dimensions.get('window').height;
