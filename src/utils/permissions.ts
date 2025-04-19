@@ -18,9 +18,11 @@ export const requestLocationPermission = async () => {
           LABEL.DENIED_PERMISSION,
           LABEL.REQUIRED_LOCATION_PERMISSION,
         );
+        return false;
       }
     } catch (error) {
       console.log('Error while granting location poermission => ', error);
+      return false;
     }
   }
 };
